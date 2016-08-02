@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import { Router, Link } from 'react-router';
+import {Link, Router, browserHistory} from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
 
 export default class LoginComponent extends Component {
@@ -52,13 +52,14 @@ export default class LoginComponent extends Component {
                     console.log(err);
                     self.setState({
                         isError: true,
-                        errMsg: err
+                        errMsg: err.message
                     });
                 }else{
                     self.setState({
                         isLoading : false
                     });
-                    Router.go("/register");
+
+                    browserHistory.push('/register');
                 }
 
             })
